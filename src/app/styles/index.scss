@@ -1,0 +1,20 @@
+@use "reset";
+@use "../../shared/styles/fonts/fonts.scss";
+
+.app {
+    font-family: "Roboto", Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+input, textarea {outline:none;}
+
+/* button,
+a {
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    opacity: 0.5;
+    transform: scale(0.97);
+  }
+} */

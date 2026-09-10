@@ -1,0 +1,1 @@
+export { BlogArticlePageAsync as BlogArticlePage, } from './ui/BlogArticlePage.async'

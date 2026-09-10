@@ -1,0 +1,51 @@
+# Основные поисковые системы
+User-agent: Yandex
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?
+Allow: /
+
+User-agent: Googlebot
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?
+Allow: /
+
+# AI-боты для поиска и ответов (разрешены)
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# AI-боты для обучения моделей (запрещены)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# Остальные боты
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Crawl-delay: 2
+
+# Карта сайта
+Sitemap: https://dx-webs.ru/sitemap.xml

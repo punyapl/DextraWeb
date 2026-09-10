@@ -1,0 +1,30 @@
+# Зависимости — устанавливаются внутри контейнера
+node_modules/
+cms/node_modules/
+
+# Артефакты сборки
+build/
+dist/
+cms/dist/
+cms/.cache/
+
+# База данных и загрузки CMS
+cms/.tmp/
+cms/public/uploads/
+
+# Git
+.git/
+.gitignore
+
+# Логи
+*.log
+npm-debug.log*
+
+# Среда разработки
+.idea/
+.vscode/
+*.local
+
+# OS
+.DS_Store
+Thumbs.db

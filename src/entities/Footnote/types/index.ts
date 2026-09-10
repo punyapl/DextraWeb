@@ -1,0 +1,1 @@
+export type { FootnoteItem } from './footnote'

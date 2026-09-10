@@ -1,0 +1,29 @@
+# ── Стадия 1: сборка фронтенда ────────────────────────────────
+FROM node:22-alpine AS builder
+
+# STRAPI_URL — адрес CMS, каким его видит браузер пользователя.
+# Передаётся через docker-compose build args или --build-arg.
+# Пример: http://localhost:1337 (локально) или https://cms.example.com (прод)
+ARG STRAPI_URL=http://localhost:1337
+
+WORKDIR /app
+
+# Зависимости — отдельный слой для кэша
+COPY package*.json ./
+RUN npm ci
+
+# Tailwind oxide для Alpine (musl libc)
+RUN npm i -g @tailwindcss/oxide-linux-x64-musl
+
+# Копируем исходники
+COPY . .
+
+# Удаляем папку cms — её TS-файлы подхватываются webpack через tsconfig "include: **/*.ts",
+# но @strapi/strapi не установлен в корневых node_modules, что ломает сборку
+RUN rm -rf cms/
+
+# Записываем strapiUrl в .env — webpack читает его через dotenv
+RUN echo "strapiUrl=${STRAPI_URL}" >> .env
+
+# Собираем продакшн-бандл
+RUN npm run build:prod

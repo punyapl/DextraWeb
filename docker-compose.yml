@@ -1,0 +1,31 @@
+services:
+  cms:
+    container_name: cms_container
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cms
+    ports:
+      - "1337:1337"
+    volumes:
+      - cms_db:/app/.tmp
+      - cms_uploads:/app/public/uploads
+    env_file:
+      - cms/.env
+    restart: unless-stopped
+
+  site:
+    container_name: site_builder
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.site
+      target: builder
+      args:
+        - STRAPI_URL=${STRAPI_URL:-https://dx-webs.ru}
+    volumes:
+      - /var/www/dx-webs.ru/build:/output
+    command: sh -c "cp -rT /app/build /output && echo '✓ Сайт собран и развёрнут'"
+    restart: "no"
+
+volumes:
+  cms_db:
+  cms_uploads:

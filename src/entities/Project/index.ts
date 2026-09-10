@@ -1,0 +1,1 @@
+export { ProjectSlider, } from './ui/ProjectSlider/ProjectSlider'
